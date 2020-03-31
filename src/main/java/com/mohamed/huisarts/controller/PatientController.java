@@ -5,7 +5,9 @@ import com.mohamed.huisarts.repositories.PatientRepository;
 import com.mohamed.huisarts.repositories.VisitRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@RequestMapping("/patients")
 @Controller
 public class PatientController {
 
@@ -21,6 +23,11 @@ public class PatientController {
 
     public void setAllowedFields(WebDataBinder dataBinder){
         dataBinder.setAllowedFields("id");
+    }
+
+    @RequestMapping("/afspraak")
+    public String appointment(){
+        return "patients/appointment";
     }
 
 
