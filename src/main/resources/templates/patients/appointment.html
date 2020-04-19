@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'AFSPRAAK MAKEN')}">
     <head>
         <meta charset="UTF-8">
-        <title>Afspraak</title>
+        <title >Afspraak</title>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
               th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
@@ -13,14 +13,8 @@
         <script  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
                  th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
     </head>
-        <body>
-            <div class="jumbotron jumbotron-fluid">
-                <div class="container-fluid">
-                    <button class="btn-primary"></button>
-                </div>
-            </div>
-             </div>
-            </div>
-        </body>
+    <body>
+        <h3> It is what it is, you know.</h3>
+    </body>
 
 </html>

@@ -30,5 +30,13 @@ public class PatientController {
         return "patients/appointment";
     }
 
+    @RequestMapping("/informatie")
+    public String informatie(){
+        return "patients/informatie";
+    }
 
+    @RequestMapping("/coronavirus")
+    public String coronavirus(){
+        return "patients/coronavirus";
+    }
 }

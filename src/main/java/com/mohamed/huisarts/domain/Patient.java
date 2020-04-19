@@ -15,13 +15,9 @@ import java.util.Set;
 public class Patient  extends Person {
 
     private String address;
-
     private String city;
-
     private String telephone;
-
     private String email;
-
     private String password;
 
 

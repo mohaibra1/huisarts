@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html  lang="en"  xmlns:th="http://www.thymeleaf.org" th:fragment="layout">
+<html  lang="en"  xmlns:th="http://www.thymeleaf.org" th:fragment="layout (template,menu)">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Medics</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    <title th:text="${menu}">Medics</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.7.1/css/bootstrap.min.css"
           th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
+    <!-- eigen css -->
+    <link rel="stylesheet"  th:href="@{../css/style.css}" >
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
     <!-- jQuery library -->
     <script th:href="@{/webjars/jquery/3.4.0/jquery.min.js}"></script>
     <!-- javascript library -->
@@ -13,22 +16,56 @@
              th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 </head>
     <body>
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <nav class="navbar navbar-expand-sm bg-info navbar-dark">
                 <div class="container-fluid">
                     <ul class="navbar-nav">
-                        <a class="navbar-brand" href="#" th:href="@{index}">Medics</a>
-                        <li class="nav-item active"><a class="nav-link" th:href="@{index}">HOME</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{patients}">AFSPRAAK MAKEN</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{index}">PRAKTIJK INFORMATIE</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{index}">CORONAVIRUS</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{index}">CONTACT</a></li>
+                        <a class="navbar-brand" href="#" th:href="@{/}"> <span class="glyphicon glyphicon-plus"></span>Medics</a>
+                        <li th:fragment="menuItem (path,active,title,glyph,text)" class="active" th:class="${active==menu ? 'active' : ''}">
+                            <a class="nav-link" th:href="@{__${path}__}" th:title="${title}">
+                                <span th:class="'glyphicon  glyphicon-'+${glyph}" class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                                <span th:text="${text}">Template</span>
+                            </a>
+                        </li>
+
+                        <li th:replace="::menuItem ('/','HOME','home page','home','HOME')">
+                            <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+                            <span>HOME</span>
+                        </li>
+                        <br/>
+                        <li th:replace="::menuItem ('/patients/afspraak','AFSPRAAK MAKEN','afspraak','calendar','AFSPRAAK MAKEN')">
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                            <span>AFSPRAAK MAKEN</span>
+                        </li>
+
+                        <li th:replace="::menuItem ('/patients/informatie','PRAKTIJK INFORMATIE','veterinarians','info-sign','PRAKTIJK INFORMATIE')">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                            <span>PRAKTIJK INFORMATIE</span>
+                        </li>
+
+                        <li th:replace="::menuItem ('/patients/coronavirus','CORONA VIRUS','CORONA VIRUS','alert','CORONA VIRUS')">
+                            <span class="glyphicon glyphicon-alert" aria-hidden="true"></span>
+                            <span>CORONA VIRUS</span>
+                        </li>
+
+                        <li th:replace="::menuItem ('/credentials/contact','CONTACT','gg','earphone','CONTACT')">
+                            <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                            <span>CONTACT</span>
+                        </li>
                     </ul>
-                    <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Sign Up</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"> Login</a></li>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" th:href="@{/credentials/registreren}">
+                            <span class="glyphicon glyphicon-user" ></span> AANMELDEN</a></li>
+                        <br/>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/credentials/login}">
+                            LOG IN <span class="glyphicon glyphicon-log-in" ></span></a></li>
                     </ul>
                 </div>
             </nav>
+
+            <th:block th:include="${template}"/>
+            <div class="footer-copyright text-center py-3">Medics © 2020 Copyright</div>
+
+
 
     </body>
 </html>
