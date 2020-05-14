@@ -6,26 +6,25 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @MappedSuperclass
-public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
+public class Person extends BaseEntity{
 
     public Person(Long id,String firstName, String lastName) {
-        this.id = id;
+        super(id);
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
+    @NotEmpty
     @Column(name = "first_name")
     private String firstName;
 
+    @NotEmpty
     @Column(name = "last_name")
     private String lastName;
 }

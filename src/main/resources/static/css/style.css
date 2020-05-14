@@ -1,19 +1,60 @@
 .footer-copyright {
     background-color: #00acc1;
     color: white;
-    margin-top: 20px;
+    margin-top: 190px;
 }
 
+body{
+    background-color: whitesmoke;
+}
 
 #container-fluid, #info {
     background-color: deepskyblue;
 }
 #login {
-    background-color: #5bc0de;
+
     margin-top: 50px;
     padding: 15px;
 }
 
 #prak{
     background-color: whitesmoke;
+}
+
+body, h1, h2, h3, p, input {
+    margin: 0;
+    font-weight: 400;
+    font-family: "varela_roundregular", sans-serif;
+    color: #34302d;
+}
+
+h1 {
+    font-size: 24px;
+    line-height: 30px;
+    font-family: "montserratregular", sans-serif;
+}
+
+h2 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+    margin-bottom: 10px;
+    font-family: "montserratregular", sans-serif;
+}
+
+h3 {
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+p {
+  font-size: 15px;
+  line-height: 24px;
+}
+
+strong {
+    font-weight: 700;
+    font-family: "montserratregular", sans-serif;
 }

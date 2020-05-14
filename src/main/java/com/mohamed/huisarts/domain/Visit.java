@@ -12,11 +12,8 @@ import java.time.LocalDate;
 @Builder
 @Entity
 @Table(name = "visits")
-public class Visit {
+public class Visit extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
     @Column(name = "date_visit")
     private LocalDate date;

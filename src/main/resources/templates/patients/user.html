@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Patinet information'">Patient Information</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.7.1/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
+    <!-- eigen css -->
+    <link rel="stylesheet"  th:href="@{../css/style.css}" >
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.13.0/css/fontawesome.min.css}">
+    <!-- jQuery library -->
+    <script th:href="@{/webjars/jquery/3.4.0/jquery.min.js}"></script>
+    <!-- javascript library -->
+    <script  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+             th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+</head>
+    <body>
+    <div class="container-fluid" id="containter-fluid">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" id="info">
+            <a class="navbar-brand">Afspraken</a>
+            <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}" th:text="'(Uitloggen)' + ${foundPatient.lastName}">(Uitloggen)USER</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="container">
+        <br/>
+        <h2 >Patient Informatie</h2>
+
+        <table class="table table-striped" th:object="${foundPatient}">
+            <tr>
+                <th>Naam</th>
+                <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+            </tr>
+            <tr>
+                <th>Adres</th>
+                <td th:text="*{address}" /></td>
+            </tr>
+            <tr>
+                <th>Stad</th>
+                <td th:text="*{city}" /></td>
+            </tr>
+            <tr>
+                <th>telefoon</th>
+                <td th:text="*{telephone}" /></td>
+            </tr>
+        </table>
+
+
+        <table class="table table-striped">
+
+            <tr th:each="pet : ${foundPatient}">
+                <td valign="top">
+                    <dl class="dl-horizontal">
+                        <dt>Name</dt>
+                        <dd th:text="${foundPatient.firstName}" /></dd>
+                        <dt>Birth Date</dt>
+                        <dd
+                                th:text="${foundPatient.address}" /></dd>
+                        <dt>Type</dt>
+                        <dd th:text="${foundPatient.lastName}" /></dd>
+                    </dl>
+                </td>
+                <td valign="top">
+                    <table class="table-condensed">
+                        <thead>
+                        <tr>
+                            <th>Afpsraak Datum</th>
+                            <th>Reden</th>
+                        </tr>
+                        </thead>
+                        <tr th:each="visit : ${foundPatient.visits}">
+                            <td th:text="${#temporals.format(visit.date, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${visit?.description}"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                   </td>
+                            <td><button class="btn btn-dark" type="submit" ><a
+                                    th:href="@{/patients/{patientId}/visits/new(patientId=${foundPatient.id})}">Maak
+                                Afspraak</a></button></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+    </body>
+</html>

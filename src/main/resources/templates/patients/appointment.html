@@ -14,7 +14,32 @@
                  th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
     </head>
     <body>
-        <h3> It is what it is, you know.</h3>
+    <div class="page-content">
+        <h1 class="page-title font-weight-bolder">Afspraak maken</h1>
+            <div id="afspraakContent">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="font-weight-bold">Telefonisch</h2>
+                        <p class="font-weight-bold">Voor een dringende afspraak belt u best tussen 8u en 9u.
+                            Voor niet-dringende afspraken kan u bellen tussen 9u en 11u.
+                            Huisbezoeken dienen telefonisch te worden aangevraagd voor 10u.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="font-weight-bold">Online</h2>
+                        <button type="submit" class="btn btn-info btn-dark"><a th:href="@{/credentials/login}" Afspraak maken>Afspraak maken</a></button>
+                        <p class="font-weight-bold">Hulp nodig bij het maken van een afspraak? Bekijk dan deze handige informatie:</p>
+                        <ul>
+                            <li>Ga naar rechtsboven van deze website,</li>
+                            <li>Klik op log in als je een account hebt</li>
+                            <li>Voer jou email en wachtwoord</li>
+                            <li>Daarna kies de datum.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+
     </body>
 
 </html>
