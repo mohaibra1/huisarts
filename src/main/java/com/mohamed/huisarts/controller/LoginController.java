@@ -7,11 +7,15 @@ import com.mohamed.huisarts.repositories.PatientRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @Controller
@@ -51,14 +55,20 @@ public class LoginController {
 
         //System.out.println(loginComand.getEmail());
 
-        Patient foundPatient = patientRepository.findByEmail(loginComand.getEmail());
-        System.out.println(foundPatient.getLastName() + " " + foundPatient.getDoctor().getFirstName());
+        if(patientRepository.findByEmail(loginComand.getEmail()) != null) {
+            Patient foundPatient = patientRepository.findByEmail(loginComand.getEmail());
+            System.out.println(foundPatient.getLastName() + " " + foundPatient.getDoctor().getFirstName());
 
-        model.addAttribute("foundPatient", patientRepository.findByEmail(loginComand.getEmail()));
+            model.addAttribute("foundPatient", patientRepository.findByEmail(loginComand.getEmail()));
 
-        if((foundPatient.getEmail().equals(loginComand.getEmail())) && foundPatient.getPassword().equals(loginComand.getPassword())) {
-            return "/patients/user";
+            if ((foundPatient.getEmail().equals(loginComand.getEmail())) && foundPatient.getPassword().equals(loginComand.getPassword())) {
+                return "/patients/user";
+            }
         }
+            FieldError fieldError = new FieldError("patientDTO", "patientNotExists","This patient not exists");
+            model.addAttribute("patientNotExists", fieldError);
+            bindingResult.addError(fieldError);
+
         System.out.println("Login is niet gelukt");
 
         return "/credentials/login";
@@ -72,22 +82,31 @@ public class LoginController {
         return "credentials/registreren";
     }
 
+    @Transactional
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String createNewPatient(@Valid Patient patient, BindingResult bindingResult){
+    public String createNewPatient(@Valid Patient patient, BindingResult bindingResult,Model model) {
 
-        if(bindingResult.hasErrors()) {
-            for(int i = 0; i < bindingResult.getAllErrors().size(); i++){
+        if (bindingResult.hasErrors()) {
+            for (int i = 0; i < bindingResult.getAllErrors().size(); i++) {
                 System.out.println(bindingResult.getAllErrors().get(i));
             }
             return "credentials/registreren";
         }
-            else {
+        if ((patientRepository.findByEmail(patient.getEmail()) != null)) {
+            Patient foundPatient = patientRepository.findByEmail(patient.getEmail());
+            if (foundPatient.getEmail().equals(patient.getEmail())) {
+                FieldError fieldError = new FieldError("patientDTO", "patientExists","This patient already exists");
+                model.addAttribute("patientExists", fieldError);
+                bindingResult.addError(fieldError);
+                return "credentials/registreren";
+            }
+        }
+
             patient.setDoctor(doctorRepository.findByLastName("Loc"));
             Patient savedPatient = patientRepository.save(patient);
 
             System.out.println(patient.getLastName());
             return "redirect:" + "/credentials/login";
-        }
 
     }
 

@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'CORONA VIRUS')}" >
->
->
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Corona Virus</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.7.1/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}">
+    <!-- eigen css -->
+    <link rel="stylesheet"  th:href="@{../css/style.css}" >
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css}">
+    <!-- jQuery library -->
+    <script th:href="@{/webjars/jquery/3.4.0/jquery.min.js}"></script>
+    <!-- javascript library -->
+    <script  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+             th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 </head>
     <body>
-        <h1> Under construction</h1>
+    <div class="container">
+        <h1 class="font-weight-bold">Contact</h1>
+        <br/>
+        <div style="background-color: lightblue; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px">
+            <h3 class="font-weight-bold">overbelasting telefoonnetwerk</h3>
+            <p class="font-weight-bold">
+                Omwille van overbelasting netwerk gelieve ons te mailen met uw naam en telefoonnummer (corona.burenzorg@gmail.com) als U niet<br>
+                binnen geraakt.
+            </p>
+        </div>
+        <br>
+        <div style="background-color: lightcoral; padding-top: 10px; padding-left: 10px; padding-right: 10px; padding-bottom: 10px">
+            <h3 class="font-weight-bold">Corona Virus</h3>
+            <p class="font-weight-bold">
+                U kan geen afspraak meer online maken, bekijk de homepagina voor meer informatie. U kan ons telefonisch contacteren op 03/235.05.06<br>
+                in de voormiddag tot 12u of tussen 13u30 en 14u15. Heeft u een vraag over het coronavirus? klik op "coronavirus" in onze site balk<br>
+                hierboven, misschien kan u hier uw antwoord al vinden. Is uw vraag niet dringend, gelieve deze dan te mailen naar<br>
+                corona.burenzorg@gmail.com, op die manier wordt het telefoonnetwerk minder belast.</p>
+        </div>
+        <br>
+        <div class="row" style="background-color: whitesmoke">
+            <div class="col-md-3">
+                <img th:src="@{../../../images/coronaVirus.png}" style="width: 250px; height: 200px">
+            </div>
+            <div class="col-md-6">
+                <p class="font-weight-bold">
+                    Op deze pagina kan u meer informatie vinden over het coronavirus. Wij<br>
+                    proberen onze site up to date te houden maar verwijzen graag naar de<br>
+                    volgende betrouwbare sites:
+                </p>
+                <br/>
+                <p class="font-weight-bold">
+                    Betrouwbare informatie: <a th:href="@{https://www.info-coronavirus.be/nl/}">https://www.info-coronavirus.be/nl/</a>
+                    Informatie nummer voor vragen: <strong>0800 14689</strong>
+                </p>
+            </div>
+        </div>
     </body>
 </html>

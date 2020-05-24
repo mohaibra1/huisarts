@@ -3,13 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Medics</title>
-
 </head>
     <body>
-        <div class="container-fluid">
-<!--            <img class="mx-auto d-block" th:src="@{/images/medical.jpg}"/>-->
-        </div>
-    </body>
-
+<!--        <div th:replace="indexImages :: imageSlide"></div>-->
+    <div style="padding-left: 275px; background-color: whitesmoke">
+        <h2 class="font-weight-bold">Huisartspraktijk De Medics</h2>
+        <br/>
+        <p class="font-weight-bold">Sint-Thomasstraat 12</p>
+        <p class="font-weight-bold">2018 Antwerpen</p>
+        <p class="font-weight-bold">Tel: 0492117785</p>
+        <br/>
+        <a th:href="@{/credentials/login}"><button type="submit" class="btn btn-info glyphicon glyphicon-calendar" > Maak afspraak via internet</button></a>
+        <br/>
+        <br/>
+    </div>
+    <div style="background-color: black; padding-left: 275px">
+        <img th:src="@{/images/huisarts1.jpg}">
+    </div>
+    <div style="padding-left: 275px; background-color: whitesmoke; padding-top: 25px">
+        <p class="font-weight-bold">Welkom op de website van Huisartsenpraktijk De Medics.</p>
+        <br>
+        <p class="font-weight-bold">Wij zijn een team van 5 huisartsen, een diëtiste, een psychotherapeut, een kinderpsychologe,
+            een loopbaancoach, een osteopaat, een gezondheidsconsulente en een accupuncturiste.</p>
+        <br>
+        <p class="font-weight-bold">We pogen samen onze patiënten te begeleiden op weg naar een gezond leven.</p>
+        <p class="font-weight-bold">Op deze website vindt u alle praktische informatie.</p>
+    </div>
     </body>
 </html>
